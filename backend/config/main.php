@@ -12,9 +12,11 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'language' => 'ru',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            'baseUrl' => ''
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -37,14 +39,22 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '/',
             'rules' => [
+                '' => 'site/index',
+                '<_c:[a-z\-_]+>' => '<_c>/index',
+                '<c_>/<a_>' => '<c_>/<a_>'
             ],
         ],
-        */
+        'assetManager' => [
+            'basePath' => '@webroot/assets',
+            'baseUrl' => '@web/assets',
+            'appendTimestamp' => true,
+            'linkAssets' => true
+        ]
     ],
     'params' => $params,
 ];
