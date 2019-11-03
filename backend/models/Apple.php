@@ -77,7 +77,7 @@ class Apple extends ActiveRecord
             $apple = new Apple;
             $apple->color = $colors[random_int(0, 2)];
             $apple->created_at = date('Y.m.d H:i:s', $createdAtUnixTime);
-            $apple->status = $statuses[rand(0, 1)];
+            $apple->status = $statuses[random_int(0, 1)];
             if ($apple->status == Apple::STATUS_FELL) {
                 $apple->fell_at = date('Y.m.d H:i:s', random_int($createdAtUnixTime, time()));
             } else {
