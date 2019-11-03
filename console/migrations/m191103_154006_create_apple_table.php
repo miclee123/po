@@ -20,7 +20,7 @@ class m191103_154006_create_apple_table extends Migration
             'fell_at' => $this->dateTime()->null()->comment('Дата падения'),
             'status' => $this->tinyInteger(1)->notNull()->comment('Статус'),
             'eaten_percent' => $this->tinyInteger(3)->notNull()->defaultValue(0)->comment('Съедено %')
-        ]);
+        ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
     }
 
     /**
