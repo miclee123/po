@@ -119,3 +119,10 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+#apple-background {
+    background-image: url(/images/apple-tree.jpeg);
+    background-size: cover;
+    width: 100%;
+    height: 850px;
+}

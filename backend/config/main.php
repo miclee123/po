@@ -1,4 +1,7 @@
 <?php
+
+use yii\base\ActionEvent;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -13,6 +16,12 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'language' => 'ru',
+    'on beforeAction' => function (ActionEvent $event) {
+        if (Yii::$app->user->isGuest && !in_array($event->action->id, ['login', 'error'])) {
+            return Yii::$app->response->redirect(['/site/login']);
+        }
+        return true;
+    },
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -45,6 +54,7 @@ return [
             'suffix' => '/',
             'rules' => [
                 '' => 'site/index',
+                '<_a:(login)>' => 'site/<_a>',
                 '<_c:[a-z\-_]+>' => '<_c>/index',
                 '<c_>/<a_>' => '<c_>/<a_>'
             ],
