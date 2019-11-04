@@ -12,13 +12,25 @@ class AppleController extends Controller
 {
     public function actionIndex()
     {
-        $post = Yii::$app->request->post();
-        if ($post['action'] ?? null == 'generate') {
-            Apple::generateRandomSet();
-            return $this->redirect(['index'], 301);
-        } else {
-            $apples = Apple::find()->all();
+        $action = Yii::$app->request->post('action');
+        switch ($action) {
+            case 'generate':
+                Apple::generateRandomSet();
+                return $this->redirect(['index'], 301);
+            case 'fallToGround':
+                $apple = Apple::findOne(Yii::$app->request->post('id'));
+                if ($apple instanceof Apple) {
+                    $apple->fallToGround();
+                }
+                break;
+            case 'eat':
+                $apple = Apple::findOne(Yii::$app->request->post('id'));
+                if ($apple instanceof Apple) {
+                    $apple->eat(Yii::$app->request->post('eat_percent'));
+                }
+                break;
         }
+        $apples = Apple::find()->all();
         return $this->render('index', compact('apples'));
     }
 }

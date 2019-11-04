@@ -125,4 +125,35 @@ a.desc:after {
     background-size: cover;
     width: 100%;
     height: 850px;
+    display: flex;
 }
+#apple-background > .apple-item-wrap {
+    flex-grow: 1;
+}
+
+#apple-background > .apple-item-wrap > .apple-item {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: relative;
+    cursor: pointer;
+}
+
+#apple-background > .apple-item-wrap > .apple-item > .action-form-wrap {
+    width: 180px;
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid blue;
+    padding: 20px;
+    display: none;
+}
+
+#apple-background > .apple-item-wrap > .apple-item:hover > .action-form-wrap {
+    display: block;
+}
+
+
